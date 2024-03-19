@@ -1,11 +1,11 @@
-from tentacles import (
+from .tentacles import (
     AccountApi,
     SummonerApi,
     api_key,
     RiotApiService
     )
 
-from eye import (
+from .eye import (
     Summoner
         )
 
