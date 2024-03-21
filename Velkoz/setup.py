@@ -1,13 +1,12 @@
 from setuptools import setup, find_packages
 
  #python setup.py sdist bdist_wheel
-VERSION = '0.0.22' 
+VERSION = '0.0.24' 
 DESCRIPTION = 'Velkoz Riot Api package'
 LONG_DESCRIPTION = 'Package that uses RiotApi to get information.\n Made to gain experience so it is not something as advanced as the other packages that do the same. Would not recommend.'
 
 # Setting up
 setup(
-       # the name must match the folder name 'verysimplemodule'
         name="Velkoz", 
         version=VERSION,
         author="Nabattis",

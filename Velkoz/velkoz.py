@@ -2,11 +2,14 @@ from .tentacles import (
     AccountApi,
     SummonerApi,
     api_key,
-    RiotApiService
+    RiotApiService,
+    MatchApi
     )
 
 from .eye import (
-    Summoner
+    Summoner,
+    Match,
+    Participant
         )
 
 service = RiotApiService(api_key)
@@ -90,10 +93,20 @@ def get_summoner(riotId:str = '\0', summonerName:str = '\0', summonerId:str = 0,
 if __name__ == '__main__':
 
     hailey = get_summoner(riotId = 'Princess#060')
-    diogo = get_summoner(riotId = 'Zemiranda04#EUW')
-    danny = get_summoner(riotId = 'iDannuwu#EUW')
-    nando = get_summoner(summonerName = 'NandoBF')
-    print(diogo.id)
-    print(hailey.level)
-    print(danny.name)
-    print(nando.level)
+    # diogo = get_summoner(riotId = 'Zemiranda04#EUW')
+    # danny = get_summoner(riotId = 'iDannuwu#EUW')
+    # nando = get_summoner(summonerName = 'NandoBF')
+    # print(diogo.id)
+    # print(hailey.level)
+    # print(danny.name)
+    # print(nando.level)
+    parameters = {'puuid': hailey.puuid, 'routing': 'europe', 'query': {}}
+
+    match_id = (MatchApi.get_match_list(service, parameters))[0]
+    print(match_id)
+    parameters = {'matchId': match_id, 'routing' : 'europe'}
+    match = Match(MatchApi.get_match(service, parameters))
+    participant = match.get_participant(9)
+    print(participant.Wcasts)
+    
+    

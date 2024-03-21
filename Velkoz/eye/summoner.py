@@ -50,5 +50,4 @@ if __name__ == '__main__':
     
     requests = {'data':{'name', 'summonerLevel'}, 'save': 'diogo'}
     sumo = Summoner(summonerDto)
-    answer = sumo.request(requests)
     print(answer)

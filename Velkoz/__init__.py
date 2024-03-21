@@ -19,5 +19,6 @@ from .tentacles import (
 
 from .eye import (
         Summoner,
-        Match
+        Match,
+        Participant
         )
