@@ -1,5 +1,4 @@
 from .common import RiotApiService
-from .config import api_key #DEBUGGING ONLY
 
 class SummonerApi(RiotApiService):
 
@@ -39,7 +38,3 @@ class SummonerApi(RiotApiService):
             return error
 
 
-if __name__ == '__main__':
-    service = RiotApiService(api_key=api_key)
-    parameters = {'puuid': 'AD2f5GhQOeuMeJ_XAle6mfO1sPqrHeru0qGpri3vJGoS3bO22_iUWW2JtRP3CkefhPhtolDSvfUdhg', 'region': 'EUW1'}
-    print(SummonerApi.get_summoner(service, parameters))

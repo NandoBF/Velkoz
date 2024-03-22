@@ -1,5 +1,4 @@
 from .common import RiotApiService
-from .config import api_key #DEBUG ONLY
 
 class ChampionMasteryApi(RiotApiService):
 
@@ -93,8 +92,4 @@ class ChampionMasteryApi(RiotApiService):
 
 
 
-if __name__ == '__main__':
-    service = RiotApiService(api_key)
-    parameters = {'puuid': 'AD2f5GhQOeuMeJ_XAle6mfO1sPqrHeru0qGpri3vJGoS3bO22_iUWW2JtRP3CkefhPhtolDSvfUdhg', 'region': 'euw1', 'query': {}}
-    print(ChampionMasteryApi.get_masteryscore(service, parameters))
 

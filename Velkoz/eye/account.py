@@ -7,8 +7,11 @@ class Account():
         if 'gameName' in accountDto:
             self.gameName = accountDto['gameName']
         if 'tagLine' in accountDto:
-            self.tagLine = accountDto
-            self.riotId = self.gameName + '#' + self.tagLine  
+            self.tagLine = accountDto['tagLine']
+            try:
+                self.riotId = self.gameName + '#' + self.tagLine
+            except:
+                self.riotId = ''
 
     def save(self, author):
         print('saved account')

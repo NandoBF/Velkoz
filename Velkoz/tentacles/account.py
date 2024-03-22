@@ -1,5 +1,4 @@
 from .common import RiotApiService
-from .config import api_key
 
 class AccountApi(RiotApiService):
 
@@ -20,17 +19,10 @@ class AccountApi(RiotApiService):
             routing = parameters['routing']
             url = f'https://{routing.lower()}.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}'
         else:
-            return 'HOW DID WE GET HERE'
+            raise Exception ('HOW DID WE GET HERE LMAO')
 
         try:
             return self._get(url=url, parameters=parameters)
         except requests.exceptions.APINotFoundError as error:
             return error
 
-
-if __name__ == '__main__':
-    service = RiotApiService(api_key)
-    diogo_puuid ='AD2f5GhQOeuMeJ_XAle6mfO1sPqrHeru0qGpri3vJGoS3bO22_iUWW2JtRP3CkefhPhtolDSvfUdhg'
-    param = {'riotId': 'Zemiranda04#EUW', 'routing':'europe'}
-
-    print(AccountApi.get_account(service, param))

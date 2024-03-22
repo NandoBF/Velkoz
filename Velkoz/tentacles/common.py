@@ -1,6 +1,5 @@
 import requests
 
-from .config import api_key
 
 
 class RiotApiService():

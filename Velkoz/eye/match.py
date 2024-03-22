@@ -27,20 +27,49 @@ class Match():
         self.queueId = kwargs.get('queueId', None)
         self.teams = kwargs.get('teams', None)
         self.tournamentCode = kwargs.get('tournamentCode', None)
-
+        self.gameVersion = kwargs.get('gameVersion', None)
     
-    def get_participant(self, index:int = 0):
-        if index < 0 or index > len(self.participants) + 1:
-            raise Exception ('That participant does not exist')
+    def _get_participant_by_puuid(self, puuid:str):
+        i = 0
+        while (i<10):
+            if self.participants[i] == puuid:
+                return i
+            else: i += 1
+        raise Exception ('Participant not found.')
 
-        return Participant(self.infoDto['participants'][index])
 
+    def _get_participant_by_riotId(self, riotId:str):
+        i = 0
+        while (i < 10):
+            riotName = self.infoDto['participants'][i].get('riotIdGameName', None)
+            tagline = self.infoDto['participants'][i].get('riotIdTagline', None)
+            if riotId == f'{riotName}#{tagline}': return i
+            else: i += 1
+        raise Exception ('Participant not found.')
+    
+
+    def get_participant(self, index:int = 0, puuid:str = '\0', riotId:str = '\0'):
+        if puuid != '\0':
+            i = self._get_participant_by_puuid(puuid)
+        
+        elif riotId != '\0':
+            i = self._get_participant_by_riotId(riotId)
+
+        else:
+            #when index is provided 
+            i = index
+            if index < 0 or index > len(self.participants) + 1:
+                raise Exception ('Invalid index')
+
+        return Participant(self.infoDto['participants'][i])
+    
 
 
 
 class Participant():
 
     def __init__(self, kwargs):
+        self.participantDto = kwargs
         self.assists = kwargs.get('assists', None)
         self.baronKills = kwargs.get('baronKills', None)
         self.bountyLevel = kwargs.get('bountyLevel', None)
@@ -89,9 +118,9 @@ class Participant():
         self.puuid = kwargs.get('puuid', None)
         self.quadraKills = kwargs.get('quadraKills', None)
         try:
-            self.riotId = (kwargs.get('riotIdName', None) + kwargs.get('riotIdTagline', None))
+            self.riotId = (kwargs.get('riotIdGameName', None) + '#' + kwargs.get('riotIdTagline', None))
         except:
-            self.riotIdName = kwargs.get('riotIdName', None)
+            self.riotIdName = kwargs.get('riotIdGameName', None)
             self.riotIdTagline = kwargs.get('riotIdTagline', None)
         self.role = kwargs.get('role', None)
         self.sightWardsBoughtInGame = kwargs.get('sightWardsBoughtInGame', None)
@@ -99,8 +128,8 @@ class Participant():
         self.Wcasts = kwargs.get('spell2Casts', None)
         self.Ecasts = kwargs.get('spell3Casts', None)
         self.Rcasts = kwargs.get('spell4Casts', None)
-        self.Dcast = kwargs.get('summoner1Casts', None)
-        self.Fcast = kwargs.get('summoner2Casts', None)
+        self.Dcasts = kwargs.get('summoner1Casts', None)
+        self.Fcasts = kwargs.get('summoner2Casts', None)
         self.Did = kwargs.get('summoner1Id', None)
         self.Fid = kwargs.get('summoner2Id', None)
         self.summonerLevel = kwargs.get('summonerLevel', None)
@@ -120,7 +149,11 @@ class Participant():
         self.visionScore = kwargs.get('visionScore', None)
         self.wardsKilled = kwargs.get('wardsKilled', None)
         self.win = kwargs.get('win', None)
-
+   
+    
+    #this function can be used to get any key of participantDto that has not been defined above
+    def get(self, parameter:str): 
+        return self.participantDto.get(parameter, None)
 
 
 

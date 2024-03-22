@@ -1,4 +1,3 @@
-from .config import api_key ## debug only
 from .common import RiotApiService
 
 class MatchApi(RiotApiService):
@@ -26,7 +25,7 @@ class MatchApi(RiotApiService):
 
 
     # Will have to handle all the info in match accordingly
-    def get_match(
+    def get_matchDto(
         self,
         parameters:dict
     ):
@@ -46,14 +45,6 @@ class MatchApi(RiotApiService):
         except requests.exceptions.APINotFoundError as error:
             return error
 
-
-
-if __name__ == '__main__':
-    service = RiotApiService(api_key=api_key)
-    parameters = {'puuid': 'AD2f5GhQOeuMeJ_XAle6mfO1sPqrHeru0qGpri3vJGoS3bO22_iUWW2JtRP3CkefhPhtolDSvfUdhg', 'routing': 'EUROPE', 'query' : {}}
-    parameters1 = {'matchId':'EUW1_6860598923', 'routing': 'europe'}
-    print(MatchApi.get_match_list(service, parameters))
-   
 
 
 

@@ -20,5 +20,6 @@ from .tentacles import (
 from .eye import (
         Summoner,
         Match,
-        Participant
+        Participant,
+        Account
         )
