@@ -95,8 +95,8 @@ class RiotApiService():
         )
         try:
             return request()
-        except requests.exceptions.HTTPError as errh:
-            return (f'HTTPError - {errh.args[0]}')
+        except Exception as error:
+            raise Exception (error)
     
     def _handle_error(
         self,
@@ -105,7 +105,7 @@ class RiotApiService():
         if error == 'Incorrect Parameters':
             return f'Detected error: {error}.'
         else:
-            return f'Raised exception: {error}'
+            raise Exception ('Raised exception: {error}')
 
 
 
