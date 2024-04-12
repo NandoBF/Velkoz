@@ -1,10 +1,10 @@
 
 # DO NOT FORGET THE DOTS!!!!!!
-from tentacles import (SummonerApi, RiotApiService, api_key) 
+from Velkoz.tentacles import (SummonerApi, RiotApiService, api_key) 
 
-from eye import Summoner
+from Velkoz.eye import Summoner
 
-service = RiotApiService(api_key)
+#service = RiotApiService(api_key)
 
 
 def _get_summonerDto_by_account(service, account:dict, region:str = 'euw1'):

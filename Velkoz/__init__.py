@@ -1,6 +1,14 @@
 
 from .velkoz import(
-        get_summoner
+        set_api_key,
+        get_account,
+        get_summoner,
+        get_match_list,
+        get_match,
+        get_all_masteries,
+        get_champion_mastery,
+        get_top_masteries,
+        get_masteryscore
 
         )
 

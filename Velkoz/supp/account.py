@@ -1,9 +1,9 @@
-from tentacles import (
+from Velkoz.tentacles import (
     AccountApi
 
         )
 
-from eye import (
+from Velkoz.eye import (
     Account
         )
 

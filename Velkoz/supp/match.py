@@ -1,7 +1,7 @@
 
-from tentacles import (AccountApi)
+from Velkoz.tentacles import (MatchApi)
 
-from eye import Match
+from Velkoz.eye import Match
 
 
 #############

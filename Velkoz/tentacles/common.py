@@ -144,11 +144,11 @@ class RiotApiRequest(object):
         
     def _handle_errorcode(self, code):
         if code == 400:
-            return (f'Request failed with status code {code}: Bad request')
+            raise Exception (f'Request failed with status code {code}: Bad request')
         elif code == 403:
-            return (f'Request failed with status code {code}: Forbidden')
+            raise Exception (f'Request failed with status code {code}: Forbidden')
         elif code == 429:
-            return (f'Request failed with status code {code}: Rate Limit Exceeded')
+            raise Exception (f'Request failed with status code {code}: Rate Limit Exceeded')
 
         
 

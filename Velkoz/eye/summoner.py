@@ -6,7 +6,7 @@ class Summoner():
         self.id = summonerDto['id']
         self.accountId = summonerDto['accountId']
         self.puuid = summonerDto['puuid']
-        self.name = summonerDto['name']
+        self.name = summonerDto.get('name', None)
         self.profileIcon = summonerDto['profileIconId']
         self.revisionDate = summonerDto['revisionDate']
         self.level = summonerDto['summonerLevel']
