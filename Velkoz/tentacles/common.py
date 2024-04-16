@@ -139,7 +139,7 @@ class RiotApiRequest(object):
             return self._retry_request_on_error(errh)
     
     def _retry_request_on_error(self, errh):
-        print(errh)
+        raise Exception (errh)
         #since I do not know how it reports the error it will stay unhandled for now
         
     def _handle_errorcode(self, code):

@@ -13,6 +13,12 @@ from .eye import ( #dont forget the dots
     Account
         )
 
+from .data import(
+    DdragonRequest,
+    Champion,
+    RiotJson
+        )
+
 from .supp import ( #dont forget the dots
     summoner as summ,
     account as acc,
@@ -21,6 +27,7 @@ from .supp import ( #dont forget the dots
 
         ) 
 
+
 #CHANGE THIS
 #ERROR HANDLING FOR INVALID API_KEY
 
@@ -28,6 +35,9 @@ def set_api_key(api_key:str):
     global service
     service = RiotApiService(api_key)
 
+def set_ddragon(path:str):
+    global ddragon
+    ddragon = DdragonRequest(ddragon_path=path)
 
 def _initialize_service(api_key=api_key):
     return RiotApiService(api_key) # Service should be initiated in the needed file
@@ -175,7 +185,40 @@ def get_masteryscore(puuid:str='\0', riotId:str='\0',region:str='euw1', routing:
 
     return mastery._get_masteryscore(service, puuid=new_puuid, region=region)
 
+############
+# Champion #
+############
 
+
+def get_champion(champion:str):
+    champDto = ddragon._get_data(get_type='champion', champion=champion)
+    champ = Champion(ddragon=ddragon, dto=champDto, champion='Aatrox')
+    return champ
+
+def get_champ_image(champion:str, **kwargs):
+    champ = get_champion(champion)
+
+    img_type = kwargs.get('image', 'splash')
+    number = kwargs.get('skin', 0)
+    match img_type:
+        case 'splash':
+            image = champ.skins.get_splash(number)
+
+        case 'loading':
+            image = champ.skins.get_loading(number)
+
+        case 'centered':
+            image = champ.skins.get_centered(number)
+
+        case 'get_tile':
+            image = champ.skins.get_tile(number)
+
+        case _:
+            raise Exception ('That type of image doesnt exist')
+
+    return image
+
+    
 
 
 
