@@ -32,4 +32,61 @@ After this you're ready to go! For more functions I recommend you reading the do
 
 ## Documentation
 
-Unfortunately I haven't made a proper Documentation yet :(
+
+#### Get a summoners account
+```python
+  vel.get_account(riotId,puuid,routing)
+```
+
+| Parameter   | type       | Description                          |
+| :---------- | :--------- | :---------------------------------- |
+| `riotId` | `string` | **Optional.** The summoners riot id |
+| `puuid` | `string` | **Optional.** The summoners puuid |
+| `routing` | `string` | **Optional.** The summoners server |
+| | | You need to provide a riotId or a puuid
+
+* Returns an account
+
+#### Get a summoner
+```python
+  vel.get_summoner(riotId=,summonerName,summonerId,region)
+```
+
+| Parameter   | type       | Description                         |
+| :---------- | :--------- | :---------------------------------- |
+| `riotId` | `string` | **Optional.** The summoners riot id |
+| `summonerName` | `string` | **Optional.** The summoners name* |
+| `summonerId` | `string` | **Optional.** The summoners id |
+| `region` | `string` | **Optional.** The summoners region |
+| | | You need to provide a riotId, summonerId or summonerName
+
+* **For accounts created before Riot's summoner name changes, the summoner name can be different from their riotId**
+* Returns a summoner
+
+#### Get list of recent matches ids
+```python
+  vel.get_match_list(riotId,puuid,routing, matches_count)
+```
+| Parameter   | type       | Description                          |
+| :---------- | :--------- | :---------------------------------- |
+| `riotId` | `string` | **Optional.** The summoners riot id |
+| `puuid` | `string` | **Optional.** The summoners puuid |
+| `routing` | `string` | **Optional.** The summoners server |
+| `matches_count` | `integer(max 100)` | **Optional.** The number of matches to get|
+| | | You need to provide a riotId or a puuid
+
+* Returns an array of match ids
+
+#### Get a matches details
+```python
+  vel.get_match(matchId, routing)
+```
+
+| Parameter   | type       | Description                          |
+| :---------- | :--------- | :---------------------------------- |
+| `matchId` | `string` | **Mandatory** The match id |
+| `routing` | `string` | **Optional.** The matches server |
+
+* Returns a match
+
+# UNFINISHED DOCUMENTATION
